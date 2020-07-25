@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+	<a href="planning_for_canada.html">Back</a>
+<div data-ng-app="" data-ng-init="quantity=1;price=5">
+
+<h2>Cost Calculator</h2>
+
+Rent: <input type="number" ng-model="Item1"><br>
+Food: <input type="number" ng-model="Item2"><br>
+Utilities: <input type="number" ng-model="Item3"><br>
+Academic Cost: <input type="number" ng-model="Item4">
+
+
+<p><b>Monthly:</b> {{Item1 + Item2 + Item3}}</p>
+
+<p><b>Per Year:</b> {{	Item1+Item1+Item1+Item1+Item1+Item1+Item1+Item1+Item1+
+						Item2+Item2+Item2+Item2+Item2+Item2+Item2+Item2+Item2+
+						Item3+Item3+Item3+Item3+Item3+Item3+Item3+Item3+Item3+
+                        Item4}}</p>
+
+</div>
+
+</body>
+</html>

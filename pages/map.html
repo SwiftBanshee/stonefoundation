@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions</title>
+    <link rel="stylesheet" href="../css/css.css">
+    <script type="text/javascript" src="../javascript/javascript.js"></script>
+
+  </head>
+  <body>
+    <a href="planning_for_canada.html">Back</a>
+    <div id="map"></div>
+    <div id="right-panel">
+      <div>
+        <b>Start:</b>
+        <select id="start">
+          <option value="Toronto, ON airport">Toronto, ON</option>
+          <option value="Montreal, QB airport">Montreal, QB</option>
+          <option value="Ottawa, ON airport">Ottawa, ON</option>
+        </select>
+        <br>
+
+        <br>
+        <b>End:</b>
+        <select id="end">
+          <option value="Kingston, ON St. Lawrence College">Kingston, ON</option>
+          <option value="Cornwall, ON St. Lawrence College">Cornwall, ON</option>
+          <option value="Brockville, ON St. Lawrence College">Brockville, ON </option>
+        </select>
+        <br>
+        <input type="submit" id="submit">
+      </div>
+      <div id="directions-panel"></div>
+    </div>
+    <script>
+     
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB13_itYbmbgdRkPpzjsfETZ9lWIhNiW28&callback=initMap">
+    </script>
+  </body>
+
+  <!--Portions of this page are modifications based on work created and shared by Google 
+  and used according to terms described in the Creative Commons 4.0 Attribution License. -->
+</html>
+

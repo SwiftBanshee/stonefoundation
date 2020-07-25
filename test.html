@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+<title>Save state of checkbox on refresh using JavaScript</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/custom.css" rel="stylesheet" />
+<style type="text/css">
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <div class="container">
+    <h1 class="col-lg-9">Save state of checkbox on refresh using JavaScript</h1>
+    
+    </div>
+  </header>
+  <div class="container">
+    <h5>Author: Julian Hansen, August 2017</h5>
+  <div class="alert alert-success">
+    <p>This demonstrates how to save the state of a checkbox between page refreshes. Click the checkboxes below and then refresh the page to see how they respond</p>
+    <p>The solution uses a class <b>save-cb-state</b> to denote which checkboxes must be persisted</p>
+  </div>
+<ul class="list-group">
+      <li class="list-group-item"><input type="checkbox" class="save-cb-state" name="mycheckbox" value="yes"> Must I save my state?</li>
+      <li class="list-group-item"><input type="checkbox" name="anothercheckbox" value="1"> Try and save this</li>
+      <li class="list-group-item"><input type="checkbox" class="save-cb-state" name="mycheckbox2" value="yes"> This can be saved as well.</li>
+    </ul>
+</div>
+</div>
+<footer>
+  <div class="container">
+    Copyright Julian Hansen &copy; 2017
+  </div>
+</footer>
+ 
+<script src="http://code.jquery.com/jquery.js"></script>
+<!-- This JavaScript file is required to load the XpressDox interview as well as the code required to run it -->
+ 
+<script>
+// Avoid scoping issues by encapsulating code inside anonymous function
+(function() {
+  // variable to store our current state
+  var cbstate;
+  
+  // bind to the onload event
+  window.addEventListener('load', function() {
+    // Get the current state from localstorage
+    // State is stored as a JSON string
+    cbstate = JSON.parse(localStorage['CBState'] || '{}');
+  
+    // Loop through state array and restore checked 
+    // state for matching elements
+    for(var i in cbstate) {
+      var el = document.querySelector('input[name="' + i + '"]');
+      if (el) el.checked = true;
+    }
+  
+    // Get all checkboxes that you want to monitor state for
+    var cb = document.getElementsByClassName('save-cb-state');
+  
+    // Loop through results and ...
+    for(var i = 0; i < cb.length; i++) {
+  
+      //bind click event handler
+      cb[i].addEventListener('click', function(evt) {
+        // If checkboxe is checked then save to state
+        if (this.checked) {
+          cbstate[this.name] = true;
+        }
+    
+    // Else remove from state
+        else if (cbstate[this.name]) {
+          delete cbstate[this.name];
+        }
+    
+    // Persist state
+        localStorage.CBState = JSON.stringify(cbstate);
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

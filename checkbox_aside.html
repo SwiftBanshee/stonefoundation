@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Before you arrive</title>
+        <link rel="stylesheet" href="css/css.css">
+        <script type="text/javascript" src="javascript/javascript.js"></script>
+    </head>
+    <body>
+        <h1>What to do before you leave.</h1>
+        <p style="margin: 50px;">
+            There's a lot to do before you leave for Canada, but don't be overwhelmed... etc...<br>
+            
+        </p>
+        <div class="container">
+            <div class="vertical-center">
+                <button type="submit" onclick="location.href='homepage.html';" class = "btn btn-danger" role = "button">Home</button>
+            </div>
+        </div>
+        <br> 
+
+        <div class="content">
+            
+            <section>
+                <h2>Buy Insurance</h2>
+                <p>
+                    St. Lawrence College has deals in place with several international insurance providers...
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <a href="more_information.html">More info</a>
+                </p>
+            </section>
+            <section>
+                <h2>Speak with your academic advisor</h2>
+                <p>
+                    Our staff will help you...
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                </p>
+            </section>
+            <section>
+                <h2>Sign into SLC.me</h2>
+                <p>
+                    When at St. Lawrence you will be using your SLC.me account frequently...
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </p>
+            </section>
+            <section>
+                <h2>Purchase your plane ticket</h2>
+                <p>
+                    Make sure to purchase your ticket and print your ticket...
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </p>
+            </section>
+        </div>
+
+        <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a> <input type="checkbox" class="save-cb-state" value="yes" name="mycheckbox" id="option1">       Buy Insurance</a>
+        <a> <input type="checkbox" class="save-cb-state" value="yes" name="mycheckbox2" id="option2">  Speak with advisor</a>
+        <a> <input type="checkbox" class="save-cb-state" value="yes" name="mycheckbox3" id="option3" >   Sign into SLC.me</a>
+        <a> <input type="checkbox" class="save-cb-state" value="yes" name="mycheckbox4" id="option4">    Buy plane ticket</a>
+        </div>
+        <div id="main">
+        <button class="openbtn sidebar" onclick="openNav()">☰ Open Sidebar</button>  
+        </div>
+
+
+
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+
+
+         <script>
+      $("#checkAll").on("change", function() {
+        $(':checkbox').not(this).prop('checked', this.checked);
+      });
+
+      $(":checkbox").on("change", function(){
+        var checkboxValues = {};
+        $(":checkbox").each(function(){
+          checkboxValues[this.id] = this.checked;
+        });
+        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+      });
+
+      function repopulateCheckboxes(){
+        var checkboxValues = $.cookie('checkboxValues');
+        if(checkboxValues){
+          Object.keys(checkboxValues).forEach(function(element) {
+            var checked = checkboxValues[element];
+            $("#" + element).prop('checked', checked);
+          });
+        }
+      }
+
+      $.cookie.json = true;
+      repopulateCheckboxes();
+      (function() {
+  // variable to store our current state
+  var cbstate;
+  
+  // bind to the onload event
+  window.addEventListener('load', function() {
+    // Get the current state from localstorage
+    // State is stored as a JSON string
+    cbstate = JSON.parse(localStorage['CBState'] || '{}');
+  
+    // Loop through state array and restore checked 
+    // state for matching elements
+    for(var i in cbstate) {
+      var el = document.querySelector('input[name="' + i + '"]');
+      if (el) el.checked = true;
+    }
+  
+    // Get all checkboxes that you want to monitor state for
+    var cb = document.getElementsByClassName('save-cb-state');
+  
+    // Loop through results and ...
+    for(var i = 0; i < cb.length; i++) {
+  
+      //bind click event handler
+      cb[i].addEventListener('click', function(evt) {
+        // If checkboxe is checked then save to state
+        if (this.checked) {
+          cbstate[this.name] = true;
+        }
+    
+    // Else remove from state
+        else if (cbstate[this.name]) {
+          delete cbstate[this.name];
+        }
+    
+    // Persist state
+        localStorage.CBState = JSON.stringify(cbstate);
+      });
+    }
+  });
+})();
+    </script>
+
+    </body>
+
+<!--
+ <div class="sidebar">
+     <ul class="sidebar">
+        <li class="sidebar">
+            <input type="checkbox" name="todo" value="Buy Insurance">Buy Insurance<br>
+        </li>
+        <li class="sidebar">
+            <input type="checkbox" name="todo" value="Speak with advisor">Speak with advisor<br>
+        </li>
+        <li class="sidebar">
+            <input type="checkbox" name="todo" value="Sign into SLC.me">Sign into SLC.me<br>
+        </li>
+        <li class="sidebar">
+            <input type="checkbox" name="todo" value="Buy plane ticket">Buy plane ticket<br>
+        </li>
+    </ul>
+    -->
+</html>
