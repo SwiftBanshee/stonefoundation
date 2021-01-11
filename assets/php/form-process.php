@@ -39,7 +39,7 @@ if (empty($_POST["message"])) {
 }
 
 
-$EmailTo = "quyon_danny@stonefoundation.ca";
+$EmailTo = "quyon_danny@hotmail.com";
 
 $Subject = "New Message Received";
 
@@ -65,7 +65,7 @@ $Body .= "\n";
 $success = mail($EmailTo, $Subject, $Body);
 
 // redirect to success page
-if ($errorMSG == ""){
+if ($success && $errorMSG == ""){
    echo "success";
 }else{
     if($errorMSG == ""){
